@@ -1,0 +1,100 @@
+name: weaver
+version: 0.1.0.0
+github: "anup-the-magic/weaver"
+license: MIT
+author: "Anup Kishore"
+maintainer: "anup.kishore@gmail.com"
+copyright: "2022"
+
+extra-source-files:
+  - README.md
+  - CHANGELOG.md
+
+# Metadata used when publishing your package
+# synopsis: Short description of your package
+# category: Application
+
+# To avoid duplicated efforts in documentation and dealing with the
+# complications of embedding Haddock markup inside cabal files, it is
+# common to point users to the README.md file.
+description: >
+  Please see the README on GitHub at
+  <https://github.com/anup-the-magic/weaver#readme>
+
+dependencies:
+  - base >= 4.7 && < 5
+  - containers
+  - text
+
+default-extensions:
+  # Recommended via https://lexi-lambda.github.io/blog/2018/02/10/an-opinionated-guide-to-haskell-in-2018
+  # Or me
+
+  - OverloadedStrings
+  - DataKinds
+  - FlexibleContexts
+
+  - DeriveAnyClass
+  - DerivingVia
+  - DefaultSignatures
+  - DuplicateRecordFields
+  - OverloadedRecordDot
+
+  # Covered by GHC2021
+  - ConstraintKinds
+  - DeriveFoldable
+  - DeriveFunctor
+  - DeriveGeneric
+  - DeriveTraversable
+  - DoAndIfThenElse
+  - EmptyCase
+  - EmptyDataDecls
+  - EmptyDataDeriving
+  - ExistentialQuantification
+  - ExplicitForAll
+  - GADTSyntax
+  - GeneralizedNewtypeDeriving
+  - ImportQualifiedPost
+  - InstanceSigs
+  - MultiParamTypeClasses
+  - NamedFieldPuns
+  - NumericUnderscores
+  - PostfixOperators
+  - RankNTypes
+  - ScopedTypeVariables
+  - StandaloneDeriving
+  - TupleSections
+  - TypeApplications
+  - TypeOperators
+  - TypeSynonymInstances
+
+_dev:
+  dependencies: &dev-dependencies
+    ormolu:
+    hlint:
+
+_base-exe: &base-exe
+  main: Main.hs
+  dependencies:
+    - weaver
+  ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+
+library:
+  source-dirs: src
+
+executables:
+  weaver-exe:
+    <<: *base-exe
+    source-dirs: app
+
+tests:
+  weaver-test:
+    ghc-options:
+      - -threaded
+      - -rtsopts
+      - -with-rtsopts=-N
+    main: Spec.hs
+    source-dirs: test

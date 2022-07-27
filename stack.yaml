@@ -1,0 +1,7 @@
+# periodically fix
+resolver: lts-19.16
+# must be at least 9.2.0, best if same as lts
+compiler: ghc-9.2.2
+# compiler-check: match-minor
+ghc-options:
+  "$everything": -haddock
